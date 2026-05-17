@@ -1,13 +1,24 @@
+databases:
+  - name: agroshop-db
+    plan: free
+    databaseName: agroshop
+    user: agroshop
+
 services:
   - type: web
     name: agroshop-backend
     env: node
     plan: free
-    buildCommand: cd agroshop/backend && npm install
-    startCommand: cd agroshop/backend && node server.js
+    rootDir: agroshop/backend
+    buildCommand: npm install
+    startCommand: node server.js
     envVars:
       - key: NODE_ENV
         value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: agroshop-db
+          property: connectionString
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ORIGIN
@@ -18,18 +29,11 @@ services:
     name: agroshop-frontend
     env: node
     plan: free
-    buildCommand: cd agroshop/frontend && npm install && npm run build
-    startCommand: cd agroshop/frontend && npm start
+    rootDir: agroshop/frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: NEXT_PUBLIC_API_URL
         sync: false
-    dependsOn:
-      - agroshop-backend
-
-databases:
-  - name: agroshop-db
-    plan: free
-    databaseName: agroshop
-    user: agroshop
