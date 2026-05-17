@@ -1,0 +1,1 @@
+Get-Process | Where-Object {$_.ProcessName -eq 'node'} | Select-Object Id, ProcessName, StartTime, @{Name='CmdLine';Expression={(Get-CimInstance Win32_Process -Filter "ProcessId=$($_.Id)").CommandLine}} | Format-List

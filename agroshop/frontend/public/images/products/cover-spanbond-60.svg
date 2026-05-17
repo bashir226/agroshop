@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <linearGradient id="bg_cover-spanbond-60" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fef9c3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fef08a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="500" height="500" fill="url(#bg_cover-spanbond-60)" rx="24"/>
+  <circle cx="250" cy="180" r="100" fill="#fef08a" opacity="0.5"/>
+  <circle cx="250" cy="180" r="70" fill="#ca8a04" opacity="0.15"/>
+  <text x="250" y="200" text-anchor="middle" font-size="80">🌾</text>
+  <text x="250" y="340" text-anchor="middle" font-family="system-ui, sans-serif" font-size="22" font-weight="600" fill="#ca8a04">Спанбонд 60 г/м²</text>
+  <text x="250" y="370" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#ca8a04" opacity="0.6">АгроМир</text>
+</svg>
