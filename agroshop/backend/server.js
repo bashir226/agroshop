@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import { initDb } from './db.js';
 import { register, login, getProfile, authMiddleware } from './auth.js';
 import {
   getCategories, getProducts, getProduct,
@@ -10,7 +11,7 @@ import {
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(cors({ origin: process.env.CORS_ORIGIN || '*' }));
 app.use(express.json());
 
 // Public routes
@@ -33,4 +34,7 @@ app.post('/api/orders', authMiddleware, createOrder);
 app.get('/api/orders', authMiddleware, getOrders);
 app.get('/api/orders/:id', authMiddleware, getOrder);
 
-app.listen(PORT, () => console.log(`🚀 API running on http://localhost:${PORT}`));
+app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
+
+await initDb();
+app.listen(PORT, () => console.log(`🚀 API running on port ${PORT}`));
